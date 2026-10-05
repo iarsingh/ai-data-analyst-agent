@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-data-analyst-agent
+  labels:
+    app: ai-data-analyst-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-data-analyst-agent
+  template:
+    metadata:
+      labels:
+        app: ai-data-analyst-agent
+    spec:
+      containers:
+        - name: api
+          image: ai-data-analyst-agent:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-data-analyst-agent
+spec:
+  selector:
+    app: ai-data-analyst-agent
+  ports:
+    - port: 80
+      targetPort: 8080
