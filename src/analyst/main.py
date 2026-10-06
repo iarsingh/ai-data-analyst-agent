@@ -8,3 +8,8 @@ app.include_router(ops_router, prefix="/v1")
 @app.post("/agent/run")
 def post_run(body: dict):
     return run(body["goal"], body["rows"])
+
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
