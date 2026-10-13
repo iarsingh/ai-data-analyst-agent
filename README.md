@@ -1,5 +1,12 @@
 # AI Data Analyst Agent
 
+## Overview
+
+A small data analyst agent that runs its tools in a fixed order. An analysis goal runs profile, filter and aggregate in that sequence and returns revenue by region. A goal that asks to delete, drop, update or insert is refused, and the agent never writes to the table it reads. It is served through a `POST /agent/run` endpoint, with a versioned `/v1` ops API for workspaces, tenant isolation, job approval and audit records.
+
+- **Built with:** Python, pytest, Docker Compose, GitHub Actions
+- **Scope:** Local agentic AI exercise with tests; tables are read-only and production apply is refused.
+
 <!-- project-guide:start -->
 ## Project guide
 
